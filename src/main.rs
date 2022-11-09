@@ -34,7 +34,7 @@ fn quiz(stdout: &mut Stdout) {
     println!(" ");
 
     while i < questions.len() {
-        print!("{}", questions[i]);
+        println!("{}", questions[i]);
         std::io::Write::flush(&mut std::io::stdout()).expect("Failed to flush stdout!");
         std::io::stdout().flush().expect("Failed to flush stdout!");
 
@@ -43,6 +43,10 @@ fn quiz(stdout: &mut Stdout) {
             .expect("Failed to read user input!");
 
         input = input.to_lowercase().trim_end().to_string();
+
+        if input.is_empty() {
+            return;
+        }
 
         if input.chars().nth(0).unwrap() == answears[i]
             || input.to_lowercase().chars().nth(0).unwrap() == answears[i]
